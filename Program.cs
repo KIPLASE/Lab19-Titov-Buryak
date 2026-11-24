@@ -132,29 +132,40 @@
 //     }
 // }
 
-public static int FindLastCharacterIndex(string text, char target)
+class Program
 {
-    if (string.IsNullOrEmpty(text))
-        return -1;
-
-    int lastIndex = -1;
-    for (int i = 0; i < text.Length; i++)
+    static void Main(string[] args)
     {
-        if (text[i] == target)
-        {
-            lastIndex = i;
-        }
+        Console.Write("Введите строку: ");
+        string input = Console.ReadLine() ?? "";
+
+        Console.Write("Введите символ для поиска: ");
+        string targetInput = Console.ReadLine() ?? "";
+        char target = targetInput.Length > 0 ? targetInput[0] : ' ';
+
+        int result = FindLastCharacterIndex(input, target);
+        Console.WriteLine($"Последний индекс символа '{target}': {result}");
+
+        // тесты из задания
+        Console.WriteLine(FindLastCharacterIndex("banana", 'a')); // 5
+        Console.WriteLine(FindLastCharacterIndex("banana", 'z')); // -1
+        Console.WriteLine(FindLastCharacterIndex("", 'a'));       // -1
     }
 
-    return lastIndex;
+    static int FindLastCharacterIndex(string text, char target)
+    {
+        if (string.IsNullOrEmpty(text))
+            return -1;
+
+        int lastIndex = -1;
+        for (int i = 0; i < text.Length; i++)
+        {
+            if (text[i] == target)
+                lastIndex = i;
+        }
+
+        return lastIndex;
+    }
 }
-Console.Write("Введите строку: ");
-string input = Console.ReadLine() ?? "";
 
-Console.Write("Введите символ для поиска: ");
-string targetInput = Console.ReadLine() ?? "";
-char target = targetInput.Length > 0 ? targetInput[0] : ' ';
-
-int result = FindLastCharacterIndex(input, target);
-Console.WriteLine($"Последний индекс символа '{target}': {result}");
 
